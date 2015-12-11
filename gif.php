@@ -10,6 +10,9 @@
     str_replace('/', '-', $time);
     
 	$future_date = new DateTime(date('r',strtotime($time)));
+    
+    // If Expire date is specified
+    $expire = (isset($_GET['expire'])) ? new DateTime(date('r',strtotime($_GET['expire']))) : $future_date;
 	$time_now = time();
 	$now = new DateTime(date('r', $time_now));
 	$frames = array();	
@@ -29,7 +32,7 @@
 		
 		$interval = date_diff($future_date, $now);
 		
-		if($future_date < $now){
+		if($future_date < $now OR $expire < $now){
 			// Open the first source image and add the text.
 			$image = imagecreatefrompng('images/expired.png');
 			ob_start();
