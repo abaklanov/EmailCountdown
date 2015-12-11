@@ -15,10 +15,6 @@
 	$frames = array();	
 	$delays = array();
 
-
-	// Your image link
-	$image = imagecreatefrompng('images/preview.png');
-
 	$delay = 100;// milliseconds
 
 	$font = array(
@@ -35,9 +31,7 @@
 		
 		if($future_date < $now){
 			// Open the first source image and add the text.
-			$image = imagecreatefrompng('images/preview.png');
-			$text = $interval->format('00:00:00:00');
-			imagettftextSp ($image , $font['size'] , $font['angle'] , $font['x-offset'] , $font['y-offset'] , $font['color'] , $font['file'], $text, 1 );
+			$image = imagecreatefrompng('images/expired.png');
 			ob_start();
 			imagegif($image);
 			$frames[]=ob_get_contents();
