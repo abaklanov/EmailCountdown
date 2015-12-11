@@ -5,6 +5,10 @@
 	include 'GIFEncoder.class.php';
 	include 'php52-fix.php';
 	$time = $_GET['time'];
+    
+    // To understand DD/MM/YYYY+00:00:01 format
+    str_replace('/', '-', $time);
+    
 	$future_date = new DateTime(date('r',strtotime($time)));
 	$time_now = time();
 	$now = new DateTime(date('r', $time_now));
@@ -18,7 +22,7 @@
 	$delay = 100;// milliseconds
 
 	$font = array(
-		'size' => 23, // Font size, in pts usually.
+		'size' => 10, // Font size, in pts usually.
 		'angle' => 0, // Angle of the text
 		'x-offset' => 7, // The larger the number the further the distance from the left hand side, 0 to align to the left.
 		'y-offset' => 30, // The vertical alignment, trial and error between 20 and 60.
